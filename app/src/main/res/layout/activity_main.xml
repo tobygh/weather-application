@@ -8,25 +8,27 @@
     android:orientation="vertical"
     android:weightSum="8"
     tools:context="mg.studio.weatherappdesign.MainActivity">
+
     <TextView
         android:id="@+id/day"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="Sunday"
+        android:text="MONDAY"
         android:textAllCaps="true"
         android:textColor="#10000000"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <android.support.constraint.ConstraintLayout
         android:id="@+id/notes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:paddingBottom="10dp"
         android:layout_marginTop="12dp"
         android:layout_weight="2"
         android:orientation="vertical"
@@ -34,12 +36,14 @@
         app:layout_constraintTop_toBottomOf="@+id/day">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/clock"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginTop="12dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="52dp"
+            android:layout_marginRight="24dp"
+            android:clickable="true"
+            android:onClick="clockClick"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/notification" />
 
@@ -48,17 +52,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="28dp"
             android:text="You have 1 appointment"
             android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <Button
             android:id="@+id/button"
-            android:layout_width="wrap_content"
+            android:layout_width="143dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
@@ -67,12 +71,13 @@
             android:onClick="btnClick"
             android:paddingLeft="40dp"
             android:paddingRight="40dp"
-            android:text="Go to Calendar"
+            android:text="Refresh"
             android:textColor="#50000000"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_news" />
     </android.support.constraint.ConstraintLayout>
+
     <android.support.constraint.ConstraintLayout
         android:id="@+id/today"
         android:layout_width="match_parent"
@@ -84,22 +89,21 @@
         app:layout_constraintTop_toBottomOf="@+id/notes">
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/constraintLayout4"
+            android:id="@+id/center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <android.support.constraint.ConstraintLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="wrap_content"
+                android:id="@+id/local"
+                android:layout_width="71dp"
                 android:layout_height="wrap_content"
 
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="32dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -107,18 +111,18 @@
                     android:id="@+id/img_weather_condition"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:layout_gravity="center"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/rainy_up" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:srcCompat="@drawable/rainy_up"
+                     />
 
                 <TextView
                     android:id="@+id/tv_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Location"
+                    android:text="Chongqing"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -129,7 +133,7 @@
                     android:id="@+id/tv_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="03/03/2018"
+                    android:text="02/28/2018"
                     android:textColor="@android:color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -140,38 +144,35 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/tv_temperature"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="0dp"
-                app:layout_constraintRight_toRightOf="parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
 
                 <TextView
                     android:id="@+id/temperature_of_the_day"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginTop="0dp"
+                    android:layout_height="match_parent"
                     android:text="18"
                     android:textColor="@android:color/white"
-                    android:textSize="100sp"
+                    android:textSize="120sp"
                     android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
                     android:gravity="end"
                     android:text="°C"
                     android:textColor="@android:color/white"
                     android:textSize="22sp"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintLeft_toRightOf="@+id/temperature_of_the_day"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.1" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
             </android.support.constraint.ConstraintLayout>
@@ -187,51 +188,60 @@
             android:layout_marginTop="0dp"
             android:layout_weight="1"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/constraintLayout4">
+            app:layout_constraintTop_toBottomOf="@id/center">
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="110dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/design" />
+                android:src="@drawable/design"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
         </android.support.constraint.ConstraintLayout>
 
     </android.support.constraint.ConstraintLayout>
+
     <android.support.constraint.ConstraintLayout
         android:id="@+id/week"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@android:color/white"
         android:weightSum="4"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/today">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/today"
+        app:layout_constraintVertical_bias="0.0">
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/weatherMon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-
+            app:layout_constraintBottom_toBottomOf="parent"
             >
 
             <ImageView
-                android:id="@+id/imgMon"
+                android:id="@+id/img1"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="0dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/rainy_small" />
+                app:srcCompat="@drawable/rainy" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/text1"
                 android:layout_marginTop="0dp"
                 android:gravity="center"
                 android:text="mon"
@@ -241,34 +251,34 @@
 
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imgMon" />
+                app:layout_constraintTop_toBottomOf="@id/img1" />
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/weatherTue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
             android:layout_weight="1"
-            app:layout_constraintLeft_toRightOf="@id/weatherMon"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/weatherWen"
+            app:layout_constraintStart_toEndOf="@+id/weatherMon"
+            app:layout_constraintTop_toTopOf="parent">
 
-            >
 
             <ImageView
-                android:id="@+id/imgTue"
+                android:id="@+id/img2"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="0dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/sunny_small" />
+                app:srcCompat="@drawable/sunny" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/text2"
                 android:layout_marginTop="0dp"
                 android:gravity="center"
                 android:text="tue"
@@ -278,34 +288,33 @@
 
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imgTue" />
+                app:layout_constraintTop_toBottomOf="@id/img2" />
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/weatherWen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
             android:layout_weight="1"
-            app:layout_constraintLeft_toRightOf="@id/weatherTue"
-            app:layout_constraintTop_toTopOf="parent"
-
-            >
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/weatherFri"
+            app:layout_constraintStart_toEndOf="@id/weatherMon"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/imgWen"
+                android:id="@+id/img3"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="0dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/partly_sunny_small" />
+                app:srcCompat="@drawable/partly_sunny" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/text3"
                 android:layout_marginTop="0dp"
                 android:gravity="center"
                 android:text="wen"
@@ -315,34 +324,35 @@
 
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imgWen" />
+                app:layout_constraintTop_toBottomOf="@id/img3" />
         </android.support.constraint.ConstraintLayout>
+
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/weatherThu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
             android:layout_weight="1"
-            app:layout_constraintLeft_toRightOf="@id/weatherWen"
+            app:layout_constraintStart_toEndOf="@id/weatherWen"
+            app:layout_constraintEnd_toStartOf="@id/weatherFri"
             app:layout_constraintTop_toTopOf="parent"
-
+            app:layout_constraintBottom_toBottomOf="parent"
             >
 
             <ImageView
-                android:id="@+id/imgThu"
+                android:id="@+id/img4"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="0dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/windy_small" />
+                app:srcCompat="@drawable/windy" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/text4"
                 android:layout_marginTop="0dp"
                 android:gravity="center"
                 android:text="Thu"
@@ -352,35 +362,34 @@
 
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imgThu" />
+                app:layout_constraintTop_toBottomOf="@id/img4" />
         </android.support.constraint.ConstraintLayout>
-
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/weatherFri"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
-            app:layout_constraintLeft_toRightOf="@id/weatherThu"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-
+            app:layout_constraintBottom_toBottomOf="parent"
             >
 
             <ImageView
-                android:id="@+id/imgFri"
+                android:id="@+id/img5"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="0dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/rainy_small" />
+                app:srcCompat="@drawable/rainy_up" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/text5"
                 android:layout_marginTop="0dp"
                 android:gravity="center"
                 android:text="fri"
@@ -390,7 +399,7 @@
 
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imgFri" />
+                app:layout_constraintTop_toBottomOf="@id/img5" />
         </android.support.constraint.ConstraintLayout>
 
 
