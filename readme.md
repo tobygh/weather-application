@@ -9,4 +9,3 @@
  - extra funtion:
    - change the words above each time the button is pressed.
    - make a toast if the button is pressed too frequently in stead of downloading again.
-   - jump to clock if the icon of clock is pressed.
